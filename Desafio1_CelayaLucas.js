@@ -15,7 +15,7 @@ class Usuario{
         const newBook = {nombre: nombre, autor: autor};
         // console.log(newBook);
         this.libros.push(newBook);
-        console.log("Se agrego el libro: " + newBook.nombre)
+        return `Se agrego el libro: ${newBook.nombre}`
     }
     // getBookNames(){
     //     console.log("--Lista de Libros del Usuario:")
@@ -29,7 +29,7 @@ class Usuario{
         coleccion.map(libro=>{
             nombre.push(libro.nombre)
         })
-        return nombre
+        return `Mi coleccion de Libros: ${nombre}`
     }
 }
 
@@ -37,6 +37,6 @@ const usuario1 = new Usuario("Lucas", "Celaya", [{nombre:"Retratos", autor:"Pabl
 console.log(usuario1)
 console.log(usuario1.getFullName())
 console.log(usuario1.countMascotas())
-usuario1.addBook("Harry Potter y el Prisionero de Azcaban","J.K Rowling");
+console.log(usuario1.addBook("Harry Potter y el Prisionero de Azcaban","J.K Rowling"))
 console.log(usuario1.getBookNames())
 console.log(usuario1)
