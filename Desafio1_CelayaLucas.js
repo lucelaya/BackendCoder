@@ -23,13 +23,16 @@ class Usuario{
     //     console.log("--fin lista de libros del usuario")
     // }
     //Otra forma de recorrer un array o de filtrar info de un array a otro
+    // getBookNames(){
+    //     let coleccion = this.libros
+    //     let nombre = [];
+    //     coleccion.map(libro=>{
+    //         nombre.push(libro.nombre)
+    //     })
+    //     return `Mi coleccion de Libros: ${nombre}`
+    //Mejor retorno el resultado de la funcion que ya me trae un arreglo con los nombres de los libros
     getBookNames(){
-        let coleccion = this.libros
-        let nombre = [];
-        coleccion.map(libro=>{
-            nombre.push(libro.nombre)
-        })
-        return `Mi coleccion de Libros: ${nombre}`
+        return `Mi coleccion de Libros: ${this.libros.map(libro=>libro.nombre)}`
     }
 }
 
