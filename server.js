@@ -11,4 +11,5 @@ app.use(express.urlencoded({extended:true}));
 app.use("/api/productos", productRouter);
 
 // posibles rutas
-// http://localhots:8080/api/productos/
+// http://localhots:8080/api/productos/    GET POST
+// http://localhots:8080/api/productos/:id GET PUT DELETE

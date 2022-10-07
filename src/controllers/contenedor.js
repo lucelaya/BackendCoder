@@ -59,6 +59,7 @@ class Contenedor{
             const productos = await this.getAll();
             const newProducts = productos.filter(item=>item.id!==id);
             await fs.promises.writeFile(this.nameFile, JSON.stringify(newProducts, null, 2));
+            return newProducts
         } catch (error) {
             console.log(error)
         }

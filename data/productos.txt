@@ -16,11 +16,5 @@
     "title": "Y: The last man#1",
     "price": 180,
     "thumbnail": "../assets/products/YTLM01.jpeg"
-  },
-  {
-    "id": 4,
-    "title": "Y: The last man#1",
-    "price": 190,
-    "thumbnail": "../assets/products/YTLM01.jpeg"
   }
 ]
