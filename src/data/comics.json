@@ -3,24 +3,24 @@
     "id": 1,
     "title": "Sandman#1",
     "price": 150,
-    "thumbnail": "../assets/products/Sandman001.jpeg"
+    "thumbnail": "./img/Sandman001.jpg"
   },
   {
     "id": 2,
     "title": "100 Bullets#1",
     "price": 120,
-    "thumbnail": "../assets/products/Balas001.jpeg"
+    "thumbnail": "./img/Balas001.jpeg"
   },
   {
     "id": 3,
     "title": "Y: The last man#1",
     "price": 180,
-    "thumbnail": "../assets/products/YTLM01.jpeg"
+    "thumbnail": "./img/YTLM01.jpeg"
   },
   {
     "id": 4,
     "title": "Y: The last man#2",
     "price": 200,
-    "thumbnail": "../assets/products/YTLM02.jpeg"
+    "thumbnail": "./img/YTLM02.jpeg"
   }
 ]
