@@ -9,9 +9,11 @@ app.use(express.urlencoded({extended:true}));
 //carpeta Public accecible para el usuario
 app.use(express.static('public'))
 
-//configuramos el motor de plantillas
+//configuracion de pug
+
+app.locals.basedir =  "src/views";
 app.set("views", "./src/views");
-app.set("view engine", "ejs");
+app.set("view engine", "pug");
 
 app.use('/', router)
 
