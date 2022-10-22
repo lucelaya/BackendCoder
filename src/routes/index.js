@@ -6,17 +6,15 @@ const router = Router()
 
 router.get('/', async(req, res) => {
   const c = await comics.getAll()
-  res.render('home',{ comics: c}) 
+  res.render('home', { comics: c}) 
 })
 
-router.post('/api/comics', (req, res) => {
-  comics.save(req.body)
-  res.redirect('/')
-})
+// const form = document.getElementById("form")
 
-router.get('/comics', async(req, res) => {
-  const c = await comics.getAll()
-  res.render('comics', { comics: c})
-})
+// router.post('/api/comics', (req, res) => {
+//   comics.save(req.body)
+//   res.redirect('/')
+//   // form.reset();
+// })
 
 export { router }
