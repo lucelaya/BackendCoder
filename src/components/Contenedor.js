@@ -76,12 +76,13 @@ class Contenedor{
     updateById = async(id, body)=>{
         try {
             const productos = await this.getAll();
-            const productPos = productos.findIndex(elm=>elm.id === id);
+            const productPos = productos.findIndex(elm=>elm.id == id);
             productos[productPos] = {
                 id:id,
                 ...body
             };
-            await fs.promises.writeFile(this.nameFile, JSON.stringify(productos, null, 2))
+            let resultado = await fs.promises.writeFile(this.nameFile, JSON.stringify(productos, null, 2))
+            // console.log({r:resultado,fn:this.nameFile,pp:productPos})
             return productos;
         } catch (error) {
             console.log(error)
