@@ -1,12 +1,15 @@
 import express from 'express'
-import { router } from './src/routes/index.js'
-import { productsRouter } from './src/routes/products.js'
-import { chartRouter } from './src/routes/chart.js'
+import { router } from './src/routes/rutas.js'
 import { engine } from 'express-handlebars'
 import { Server } from 'socket.io'
+// import { Contenedor } from './src/components/Contenedor.js'
+import { ContenedorSql } from './src/components/contenedorSql.js';
+import { options } from './src/config/dbConfig.js'
 
-import { Contenedor } from './src/components/Contenedor.js'
-const productos = new Contenedor("./src/data/comics.json");
+//const productos = new Contenedor("./src/data/comics.json");
+const productos = new ContenedorSql(options.mariaDB, "products");
+//const historicoMensajes = [];
+const historicoMensajes = new ContenedorSql(options.sqliteDB,"chat");
 
 const PORT = process.env.PORT || 8080;
 const app = express()
@@ -30,35 +33,32 @@ app.use(express.static(__dirname+"/public"));
 // io.use(express.static('public'));
 
 //Router
-// app.use('/', router)
-app.use('/api/carrito', chartRouter)
-app.use('/api/productos', productsRouter)
+app.use('/', router)
 
 //HandleBarS
 app.engine('hbs', engine({ extname: 'hbs' }))
 app.set('view engine', 'hbs')
 app.set('views', './src/views')
 
-const historicoMensajes = [];
-
 io.on("connection",async(socket)=>{
     console.log("nuevo usuario conectado", socket.id);
     //enviar a todos menos al socket conectado
     socket.broadcast.emit("newUser");
-    socket.emit("historico",historicoMensajes)
-    socket.on("message",data=>{
+    socket.emit("historico",await historicoMensajes.getAll())
+    socket.on("message",async data=>{
         console.log(data);
-        historicoMensajes.push(data);
+        // historicoMensajes.push(data);
+        console.log(await historicoMensajes.save(data));
         //enviar a todos
-        io.sockets.emit("historico",historicoMensajes);
+        io.sockets.emit("historico",await historicoMensajes.getAll());
     })
 
     // primer pintada ya realizada en el route
     // socket.emit("productos",await productos.getAll())
     socket.on("alta",async data=>{
         console.log(data);
-        console.log(productos);
-        await productos.save(data);
+        console.log(await productos.getAll());
+        console.log(await productos.save(data));
         //enviar a todos
         io.sockets.emit("productos",await productos.getAll());
     })

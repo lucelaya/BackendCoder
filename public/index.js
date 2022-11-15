@@ -62,7 +62,7 @@ btMsj.addEventListener("click",(evt)=>{
     now = today.toLocaleString()
     socketClient.emit("message",{
         username:user,
-        time:now,
+        timestamp:now,
         message:campo.value
     })
     campo.value=""
@@ -74,7 +74,7 @@ campo.addEventListener("keydown",(evt)=>{
         // console.log(campo.value)
         socketClient.emit("message",{
             username:user,
-            time:now,
+            timestamp:now,
             message:campo.value
         })
         campo.value=""
