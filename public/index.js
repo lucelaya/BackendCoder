@@ -60,6 +60,7 @@ let now //now = today.toLocaleString(); example:1/27/2020, 9:30:00 PM
 
 btMsj.addEventListener("click",(evt)=>{
     now = today.toLocaleString()
+console.log(now)
     socketClient.emit("message",{
         username:user,
         timestamp:now,
@@ -88,7 +89,7 @@ socketClient.on("historico",(data)=>{
     let elementos="";
     idProd = 0
     data.forEach(item=>{
-        elementos = elementos + `<p><span style="color:blue"><strong>${item.username}</strong><span/> <span style="color:brown">${item.time}<span/> : <span style="color:green"><i>${item.message}<i></p>`;
+        elementos = elementos + `<p><span style="color:blue"><strong>${item.username}</strong><span/> <span style="color:brown">${item.timestamp}<span/> : <span style="color:green"><i>${item.message}<i></p>`;
     });
     // console.log(elementos)
     messageContainer.innerHTML = elementos;
