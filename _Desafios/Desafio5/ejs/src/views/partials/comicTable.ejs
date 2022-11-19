@@ -1,0 +1,27 @@
+<div>
+    <h3>Historico de comic</h3>
+    <% if(comics.length){ %>
+    <table class='table'>
+        <thead>
+        <tr>
+            <th scope='col'>Title</th>
+            <th scope='col'>Price</th>
+            <th scope='col'>Thumbnail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% comics.forEach(comic => { %>
+            <tr>
+                <td><%= comic.title %> </td>
+                <td><%= comic.price %> </td>
+                <td>
+                    <img src= <%- comic.thumbnail %> 
+                         alt= <%- comic.title %> width='50' />
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+<% } else{ %>  
+    <p>No se encontraron datos</p>
+<% } %>

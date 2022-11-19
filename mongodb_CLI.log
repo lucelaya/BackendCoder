@@ -1,0 +1,153 @@
+1)
+    > db.productos.insertMany([ {title: "Sandman#1",price: 150,thumbnail: "./img/Sandman001.jpg"},   {title: "Sandman#2",price: 150,thumbnail: "./img/Sandman002.jpg"},   {title: "Sandman#3",price: 150,thumbnail: "./img/Sandman003.jpg"},   {title: "100 Bullets#1",price: 120,thumbnail: "./img/Balas001.jpeg"},   {title: "100 Bullets#2",price: 120,thumbnail: "./img/Balas002.jpeg"},   {title: "100 Bullets#3",price: 120,thumbnail: "./img/Balas003.jpeg"},   {title: "Y: The last man#1",price: 180,thumbnail: "./img/YTLM01.jpeg"},   {title: "Y: The last man#2",price: 180,thumbnail: "./img/YTLM02.jpeg"},   {title: "Y: The last man#3",price: 180,thumbnail: "./img/YTLM03.jpeg"},   {title: "Y: The last man#4",price: 180,thumbnail: "./img/YTLM04.jpeg"}])
+    {
+        "acknowledged" : true,
+        "insertedIds" : [
+            ObjectId("637913badffe8ec3f51a6c4a"),
+            ObjectId("637913badffe8ec3f51a6c4b"),
+            ObjectId("637913badffe8ec3f51a6c4c"),
+            ObjectId("637913badffe8ec3f51a6c4d"),
+            ObjectId("637913badffe8ec3f51a6c4e"),
+            ObjectId("637913badffe8ec3f51a6c4f"),
+            ObjectId("637913badffe8ec3f51a6c50"),
+            ObjectId("637913badffe8ec3f51a6c51"),
+            ObjectId("637913badffe8ec3f51a6c52"),
+            ObjectId("637913badffe8ec3f51a6c53")
+        ]
+    }
+    > db.mensajes.insertMany([
+    ... {username:"user1",timestamp:"11/19/2022, 2:42:11 PM",message:"Hola"},
+    ... {username:"user1",timestamp:"11/19/2022, 2:42:12 PM",message:"Holala"},
+    ... {username:"user1",timestamp:"11/19/2022, 2:42:13 PM",message:"Holalala"},
+    ... {username:"user2",timestamp:"11/19/2022, 2:42:14 PM",message:"Holalalala"},
+    ... {username:"user2",timestamp:"11/19/2022, 2:42:15 PM",message:"Holalalalala"},
+    ... {username:"user2",timestamp:"11/19/2022, 2:42:16 PM",message:"Holalalalalala"},
+    ... {username:"user3",timestamp:"11/19/2022, 2:42:17 PM",message:"Holalalalalalala"},
+    ... {username:"user3",timestamp:"11/19/2022, 2:42:18 PM",message:"Holalalalalalalala"},
+    ... {username:"user3",timestamp:"11/19/2022, 2:42:19 PM",message:"Holalalalalalalalala"},
+    ... {username:"user4",timestamp:"11/19/2022, 2:42:20 PM",message:"Holalalalalalalalalala"}])
+    {
+        "acknowledged" : true,
+        "insertedIds" : [
+            ObjectId("637916bcdffe8ec3f51a6c54"),
+            ObjectId("637916bcdffe8ec3f51a6c55"),
+            ObjectId("637916bcdffe8ec3f51a6c56"),
+            ObjectId("637916bcdffe8ec3f51a6c57"),
+            ObjectId("637916bcdffe8ec3f51a6c58"),
+            ObjectId("637916bcdffe8ec3f51a6c59"),
+            ObjectId("637916bcdffe8ec3f51a6c5a"),
+            ObjectId("637916bcdffe8ec3f51a6c5b"),
+            ObjectId("637916bcdffe8ec3f51a6c5c"),
+            ObjectId("637916bcdffe8ec3f51a6c5d")
+        ]
+    }
+    > show tables
+    mensajes
+    productos
+2)
+    > db.productos.update({price:150},{$set:{price:900}})
+    WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+    > db.productos.updateMany({price:150},{$set:{price:900}})
+    { "acknowledged" : true, "matchedCount" : 2, "modifiedCount" : 2 }
+    > db.productos.updateMany({price:120},{$set:{price:2000}})
+    { "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+    > db.productos.updateMany({price:180},{$set:{price:4000}})
+    { "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+3)
+    > db.mensajes.find()
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c54"), "username" : "user1", "timestamp" : "11/19/2022, 2:42:11 PM", "message" : "Hola" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c55"), "username" : "user1", "timestamp" : "11/19/2022, 2:42:12 PM", "message" : "Holala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c56"), "username" : "user1", "timestamp" : "11/19/2022, 2:42:13 PM", "message" : "Holalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c57"), "username" : "user2", "timestamp" : "11/19/2022, 2:42:14 PM", "message" : "Holalalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c58"), "username" : "user2", "timestamp" : "11/19/2022, 2:42:15 PM", "message" : "Holalalalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c59"), "username" : "user2", "timestamp" : "11/19/2022, 2:42:16 PM", "message" : "Holalalalalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c5a"), "username" : "user3", "timestamp" : "11/19/2022, 2:42:17 PM", "message" : "Holalalalalalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c5b"), "username" : "user3", "timestamp" : "11/19/2022, 2:42:18 PM", "message" : "Holalalalalalalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c5c"), "username" : "user3", "timestamp" : "11/19/2022, 2:42:19 PM", "message" : "Holalalalalalalalala" }
+    { "_id" : ObjectId("637916bcdffe8ec3f51a6c5d"), "username" : "user4", "timestamp" : "11/19/2022, 2:42:20 PM", "message" : "Holalalalalalalalalala" }
+    > db.productos.find()
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4a"), "title" : "Sandman#1", "price" : 900, "thumbnail" : "./img/Sandman001.jpg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4b"), "title" : "Sandman#2", "price" : 900, "thumbnail" : "./img/Sandman002.jpg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4c"), "title" : "Sandman#3", "price" : 900, "thumbnail" : "./img/Sandman003.jpg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4d"), "title" : "100 Bullets#1", "price" : 2000, "thumbnail" : "./img/Balas001.jpeg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4e"), "title" : "100 Bullets#2", "price" : 2000, "thumbnail" : "./img/Balas002.jpeg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4f"), "title" : "100 Bullets#3", "price" : 2000, "thumbnail" : "./img/Balas003.jpeg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c50"), "title" : "Y: The last man#1", "price" : 4000, "thumbnail" : "./img/YTLM01.jpeg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c51"), "title" : "Y: The last man#2", "price" : 4000, "thumbnail" : "./img/YTLM02.jpeg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c52"), "title" : "Y: The last man#3", "price" : 4000, "thumbnail" : "./img/YTLM03.jpeg" }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c53"), "title" : "Y: The last man#4", "price" : 4000, "thumbnail" : "./img/YTLM04.jpeg" }
+4)
+    > db.productos.count()
+    10
+    > db.mensajes.count()
+    10
+5)
+    a)
+    > db.productos.insert({title: "Sandman#4",price: 1000,thumbnail: "./img/Sandman004.jpg"})
+    WriteResult({ "nInserted" : 1 })
+    b)
+        i)
+        > db.productos.find({price:{$lt:1000}})
+        { "_)id" : ObjectId("637913badffe8ec3f51a6c4a"), "title" : "Sandman#1", "price" : 900, "thumbnail" : "./img/Sandman001.jpg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4b"), "title" : "Sandman#2", "price" : 900, "thumbnail" : "./img/Sandman002.jpg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4c"), "title" : "Sandman#3", "price" : 900, "thumbnail" : "./img/Sandman003.jpg" }
+        ii)
+        > db.productos.find({$and:[{price:{$lte:3000}},{price:{$gte:1000}}]})
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4d"), "title" : "100 Bullets#1", "price" : 2000, "thumbnail" : "./img/Balas001.jpeg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4e"), "title" : "100 Bullets#2", "price" : 2000, "thumbnail" : "./img/Balas002.jpeg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4f"), "title" : "100 Bullets#3", "price" : 2000, "thumbnail" : "./img/Balas003.jpeg" }
+        { "_id" : ObjectId("637921d0dffe8ec3f51a6c5e"), "title" : "Sandman#4", "price" : 1000, "thumbnail" : "./img/Sandman004.jpg" }
+        iii)
+        > db.productos.find({price:{$gt:3000}})
+        { "_id" : ObjectId("637913badffe8ec3f51a6c50"), "title" : "Y: The last man#1", "price" : 4000, "thumbnail" : "./img/YTLM01.jpeg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c51"), "title" : "Y: The last man#2", "price" : 4000, "thumbnail" : "./img/YTLM02.jpeg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c52"), "title" : "Y: The last man#3", "price" : 4000, "thumbnail" : "./img/YTLM03.jpeg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c53"), "title" : "Y: The last man#4", "price" : 4000, "thumbnail" : "./img/YTLM04.jpeg" }
+        iv)
+        > db.productos.find({},{title:1,_id:0}).sort({price:1}).limit(1).skip(2)
+        { "title" : "Sandman#2" }
+        > db.productos.find().sort({price:1}).limit(3)
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4c"), "title" : "Sandman#3", "price" : 900, "thumbnail" : "./img/Sandman003.jpg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4a"), "title" : "Sandman#1", "price" : 900, "thumbnail" : "./img/Sandman001.jpg" }
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4b"), "title" : "Sandman#2", "price" : 900, "thumbnail" : "./img/Sandman002.jpg" }
+        > db.productos.find().sort({price:1}).limit(1).skip(2)
+        { "_id" : ObjectId("637913badffe8ec3f51a6c4b"), "title" : "Sandman#2", "price" : 900, "thumbnail" : "./img/Sandman002.jpg" }
+    c)
+    > db.productos.updateMany({},{$set:{stock:100}})
+    { "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 11 }
+    > db.productos.find()
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4a"), "title" : "Sandman#1", "price" : 900, "thumbnail" : "./img/Sandman001.jpg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4b"), "title" : "Sandman#2", "price" : 900, "thumbnail" : "./img/Sandman002.jpg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4c"), "title" : "Sandman#3", "price" : 900, "thumbnail" : "./img/Sandman003.jpg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4d"), "title" : "100 Bullets#1", "price" : 2000, "thumbnail" : "./img/Balas001.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4e"), "title" : "100 Bullets#2", "price" : 2000, "thumbnail" : "./img/Balas002.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4f"), "title" : "100 Bullets#3", "price" : 2000, "thumbnail" : "./img/Balas003.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c50"), "title" : "Y: The last man#1", "price" : 4000, "thumbnail" : "./img/YTLM01.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c51"), "title" : "Y: The last man#2", "price" : 4000, "thumbnail" : "./img/YTLM02.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c52"), "title" : "Y: The last man#3", "price" : 4000, "thumbnail" : "./img/YTLM03.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c53"), "title" : "Y: The last man#4", "price" : 4000, "thumbnail" : "./img/YTLM04.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637921d0dffe8ec3f51a6c5e"), "title" : "Sandman#4", "price" : 1000, "thumbnail" : "./img/Sandman004.jpg", "stock" : 100 }
+    d) - como no tengo productos con precio mayor a 4k lo hice igual a 4k - 
+    > db.productos.updateMany({price:{$eq:4000}},{$set:{stock:0}})
+    { "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+    > db.productos.find({price:{$eq:4000}})
+    { "_id" : ObjectId("637913badffe8ec3f51a6c50"), "title" : "Y: The last man#1", "price" : 4000, "thumbnail" : "./img/YTLM01.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c51"), "title" : "Y: The last man#2", "price" : 4000, "thumbnail" : "./img/YTLM02.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c52"), "title" : "Y: The last man#3", "price" : 4000, "thumbnail" : "./img/YTLM03.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c53"), "title" : "Y: The last man#4", "price" : 4000, "thumbnail" : "./img/YTLM04.jpeg", "stock" : 0 }
+    e)
+    > db.productos.find({price:{$lt:1000}})
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4a"), "title" : "Sandman#1", "price" : 900, "thumbnail" : "./img/Sandman001.jpg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4b"), "title" : "Sandman#2", "price" : 900, "thumbnail" : "./img/Sandman002.jpg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4c"), "title" : "Sandman#3", "price" : 900, "thumbnail" : "./img/Sandman003.jpg", "stock" : 100 }
+    > db.productos.deleteMany({price:{$lt:1000}})
+    { "acknowledged" : true, "deletedCount" : 3 }
+    > db.productos.find()
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4d"), "title" : "100 Bullets#1", "price" : 2000, "thumbnail" : "./img/Balas001.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4e"), "title" : "100 Bullets#2", "price" : 2000, "thumbnail" : "./img/Balas002.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c4f"), "title" : "100 Bullets#3", "price" : 2000, "thumbnail" : "./img/Balas003.jpeg", "stock" : 100 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c50"), "title" : "Y: The last man#1", "price" : 4000, "thumbnail" : "./img/YTLM01.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c51"), "title" : "Y: The last man#2", "price" : 4000, "thumbnail" : "./img/YTLM02.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c52"), "title" : "Y: The last man#3", "price" : 4000, "thumbnail" : "./img/YTLM03.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637913badffe8ec3f51a6c53"), "title" : "Y: The last man#4", "price" : 4000, "thumbnail" : "./img/YTLM04.jpeg", "stock" : 0 }
+    { "_id" : ObjectId("637921d0dffe8ec3f51a6c5e"), "title" : "Sandman#4", "price" : 1000, "thumbnail" : "./img/Sandman004.jpg", "stock" : 100 }
