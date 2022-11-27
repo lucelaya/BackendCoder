@@ -1,0 +1,31 @@
+<div class="container">
+	<h1>Desafio 11 - mock y normalizr</h1>
+	<div class="container" style="background-color:lightblue">
+		<h2>Ingrese Productos</h2>
+		<small>Transmetropolitan#1 - 100 - "./img/Trans01.jpeg"</small>
+		{{> form}}
+	</div>
+	<div class="container" style="background-color:tomato">
+		<h2>Productos almacenados</h2>
+		{{#if comics}}
+			{{> table}}
+			{{else}}
+			<p>No se encontraron datos</p>
+		{{/if}}
+
+		{{!-- <div class="text-center my-2">
+			<a href="/" class="btn btn-dark" >Home</a>
+		</div> --}}
+
+	</div>
+	<div class="container" style="background-color:lightyellow">
+		<h2>Centro de Mensajes</h2>
+		<input type='text' id='messageField'/><button class='btn btn-primary mx-2' id="mensajear">Enviar</button>
+		<div id='messageContainer'></div>
+	</div>
+
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='//cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+	<script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
+    <script src='./index.js'></script>
+</div>
