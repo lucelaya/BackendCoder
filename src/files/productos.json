@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "asd",
+    "price": "1",
+    "thumbnail": "https://placekitten.com/200/300"
+  },
+  {
+    "id": 2,
+    "title": "asd2",
+    "price": "2",
+    "thumbnail": "https://placekitten.com/200/300"
+  }
+]

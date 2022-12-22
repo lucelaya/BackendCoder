@@ -1,6 +1,6 @@
 import { Router } from 'express'
 //import { Contenedor } from '../components/Contenedor.js'
-import { ContenedorSql } from '../components/contenedorSql.js'
+import { ContenedorSql } from '../components/ContenedorSql.js'
 import { options } from '../config/dbConfig.js'
 import {faker} from "@faker-js/faker";
 const {commerce, image, datatype} = faker;

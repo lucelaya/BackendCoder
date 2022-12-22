@@ -6,6 +6,10 @@ import * as url from 'url';
     const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const options = {
+    fileSystem: {
+        pathProducts: 'src/files/productos.json',
+        pathCarts: 'src/files/carritos.json',
+    },
     mariaDB:{
         client:"mysql",
         connection:{

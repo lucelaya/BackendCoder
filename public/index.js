@@ -34,7 +34,6 @@ Swal.fire({
     Alias: ${result.value.alias}
     Avatar: ${result.value.avatar}
     `.trim());
-    // console.log(result.value);
     user = result.value;
 });
 
@@ -62,10 +61,8 @@ btMsj.addEventListener("click",(evt)=>{
     campo.value=""
 })
 campo.addEventListener("keydown",(evt)=>{
-    // console.log(evt.key)
     now = today.toLocaleString()
     if(evt.key === "Enter"){
-        // console.log(campo.value)
         socketClient.emit("message",{
             author:user,
             text:chatInput.value,
@@ -76,22 +73,18 @@ campo.addEventListener("keydown",(evt)=>{
 })
 
 const messageContainer = document.getElementById("messageContainer");
-console.log(messageContainer)
 
 socketClient.on("historico",(data)=>{
     //de-normalizar
     const normalData = normalizr.denormalize(data.result,chatSchema,data.entities);
     //nivel de reduccion
     let compresion = parseInt(100 - (100 * JSON.stringify(normalData,null,"\t").length / JSON.stringify(data,null,"\t").length))
-    // console.log("data;",JSON.stringify(data,null,"\t").length)
-    // console.log("normalData:",JSON.stringify(normalData,null,"\t").length)
     let elementos="";
     idProd = 0
     normalData.messages.forEach(msj=>{
         elementos = elementos + `<p><span style="color:blue"><strong>${msj.author.alias}</strong><span/>
         <span style="color:brown">${msj.timestamp}<span/> : <span style="color:green"><i>${msj.message}<i><span/></p>`;
     });
-    // console.log(elementos)
     messageContainer.innerHTML = `<h3 style="color:red">Compresion: <i>${compresion} % <i></h3>` + elementos;
 })
 
@@ -103,11 +96,9 @@ socketClient.on("newUser",()=>{
 })
 
 const table = document.getElementById("table");
-console.log(table)
 
 socketClient.on("productos",(data)=>{
     let elementos=""
-    // debugger
     data.forEach(item=>{
         elementos = elementos + 
        `<tr>
@@ -119,7 +110,6 @@ socketClient.on("productos",(data)=>{
         </td>
         </tr>`
     });
-    // console.log(elementos)
     table.innerHTML = elementos
 })
 
@@ -129,7 +119,6 @@ const price = document.getElementById("price")
 const thumbnail = document.getElementById("thumbnail")
 
 SubmitBtn.addEventListener("click",(evt)=>{
-    // console.log(SubmitBtn.value)
     evt.preventDefault()
     socketClient.emit("alta",  {
         "title": title.value,

@@ -1,9 +1,11 @@
 import express from 'express'
 import { router } from './src/routes/rutas.js'
+import { cartsRouter } from "./src/routes/carritos.js";
+import { productsRouter } from "./src/routes/products.js";
 import { engine } from 'express-handlebars'
 import { Server } from 'socket.io'
 import { Contenedor } from './src/components/Contenedor.js'
-import { ContenedorSql } from './src/components/contenedorSql.js';
+import { ContenedorSql } from './src/components/ContenedorSql.js';
 import { options } from './src/config/dbConfig.js'
 import { normalize, schema } from 'normalizr'
 
@@ -36,6 +38,9 @@ app.use(express.static(__dirname+"/public"));
 
 //Router
 app.use('/', router)
+//router productos y carritos
+app.use('/api/productos', productsRouter);
+app.use('/api/carritos', cartsRouter);
 
 //HandleBarS
 app.engine('hbs', engine({ extname: 'hbs' }))
@@ -72,12 +77,10 @@ const normalizarData = (data)=>{
 const normalizarMensajes = async()=>{
     const results = await historicoMensajes.getAll();
     const messagesNormalized = normalizarData(results);
-    // console.log(JSON.stringify(messagesNormalized, null,"\t"));
     return messagesNormalized;
 }
 
 io.on("connection",async(socket)=>{
-    //console.log("nuevo usuario conectado", socket.id);
     //enviar a todos menos al socket conectado
     socket.broadcast.emit("newUser");
     // socket.emit("historico",await historicoMensajes.getAll())
@@ -92,7 +95,6 @@ io.on("connection",async(socket)=>{
     // primer pintada ya realizada en el route
     // socket.emit("productos",await productos.getAll())
     socket.on("alta",async data=>{
-        // console.log(data);
         await productos.getAll();
         await productos.save(data);
         //enviar a todos
